@@ -29,4 +29,14 @@ interface HttpClientInterface
      * @return HttpClientResponse
      */
     public function post($requestUrl, array $queryParameters, array $postData, array $requestHeaders = []);
+
+    /**
+     * @param string               $requestUrl
+     * @param array<string,string> $queryParameters
+     * @param array<string,string> $postData
+     * @param array<string>        $requestHeaders
+     *
+     * @return HttpClientResponse
+     */
+    public function delete($requestUrl, array $queryParameters, array $postData, array $requestHeaders = []);
 }

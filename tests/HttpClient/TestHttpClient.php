@@ -60,6 +60,19 @@ class TestHttpClient implements HttpClientInterface
     }
 
     /**
+     * @param string               $requestUrl
+     * @param array<string,string> $queryParameters
+     * @param array<string,string> $postData
+     * @param array<string>        $requestHeaders
+     *
+     * @return \LC\Common\HttpClient\HttpClientResponse
+     */
+    public function delete($requestUrl, array $queryParameters, array $postData, array $requestHeaders = [])
+    {
+        throw new RuntimeException('DELETE not implemented');
+    }
+
+    /**
      * @param mixed $key
      * @param mixed $responseData
      *
