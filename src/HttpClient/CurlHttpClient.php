@@ -102,11 +102,37 @@ class CurlHttpClient implements HttpClientInterface
      * @param array<string,string> $queryParameters
      * @param array<string,string> $postData
      * @param array<string>        $requestHeaders
+     *
+     * @return HttpClientResponse
+     */
+    public function post($requestUrl, array $queryParameters, array $postData, array $requestHeaders = [])
+    {
+        return $this->request($requestUrl, $queryParameters, $postData, $requestHeaders, "POST");
+    }
+
+    /**
+     * @param string               $requestUrl
+     * @param array<string,string> $queryParameters
+     * @param array<string,string> $postData
+     * @param array<string>        $requestHeaders
+     *
+     * @return HttpClientResponse
+     */
+    public function delete($requestUrl, array $queryParameters, array $postData, array $requestHeaders = [])
+    {
+        return $this->request($requestUrl, $queryParameters, $postData, $requestHeaders, "DELETE");
+    }
+
+    /**
+     * @param string               $requestUrl
+     * @param array<string,string> $queryParameters
+     * @param array<string,string> $postData
+     * @param array<string>        $requestHeaders
      * @param string               $method
      *
      * @return HttpClientResponse
      */
-    public function post($requestUrl, array $queryParameters, array $postData, array $requestHeaders = [], $method = "POST")
+    private function request($requestUrl, array $queryParameters, array $postData, array $requestHeaders = [], $method = "POST")
     {
         // XXX do not duplicate all GET code
         if (false === $curlChannel = curl_init()) {
@@ -163,18 +189,5 @@ class CurlHttpClient implements HttpClientInterface
             $headerList,
             $responseData
         );
-    }
-
-    /**
-     * @param string               $requestUrl
-     * @param array<string,string> $queryParameters
-     * @param array<string,string> $postData
-     * @param array<string>        $requestHeaders
-     *
-     * @return HttpClientResponse
-     */
-    public function delete($requestUrl, array $queryParameters, array $postData, array $requestHeaders = [])
-    {
-        return $this->post($requestUrl, $queryParameters, $postData, $requestHeaders, "DELETE");
     }
 }
